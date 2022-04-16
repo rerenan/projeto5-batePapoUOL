@@ -1,25 +1,22 @@
-const nome = prompt("Qual é o seu nome?")
 let listMsgs = [];
-const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',{name: nome})
-request.then(resposta => console.log(resposta.data))
-request.catch(erro => console.log(erro.response.data))
-
-setInterval(manterConectado,5000);
-
-function manterConectado() {
-    axios.post('https://mock-api.driven.com.br/api/v6/uol/status',{name: nome})
+let nome = prompt("Qual é o seu nome?");
+function enviarNome(){
+    const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',{name: nome})
+    request.then(buscarMensagens);
+    request.catch(tratarErro);
 }
-let promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages')
-promise.then(carregarMensagens);
-promise.catch(erro => console.log(erro.response.data))
+enviarNome();
 
-function carregarMensagens(resposta) {
+
+function buscarMensagens(){
+    let promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages')
+    promise.then(mostrarMensagens);
+    promise.catch(erro => console.log(erro.response.data))
+    const aparecerNaTela = document.querySelector(".aux-scroll")
+    aparecerNaTela.scrollIntoView()
+}
+function mostrarMensagens(resposta){
     listMsgs = resposta.data;
-    console.log(listMsgs);
-    mostrarMensagens(listMsgs);
-}
-
-function mostrarMensagens(mensagens){
     const chat = document.querySelector(".chat")
     chat.innerHTML = " "
     for(let i = 0; i< listMsgs.length; i++){
@@ -41,3 +38,32 @@ function mostrarMensagens(mensagens){
         }  
     }
 }
+
+
+function manterConectado() {
+    axios.post('https://mock-api.driven.com.br/api/v6/uol/status',{name: nome})
+}
+function tratarErro(erro){
+    console.log(erro.response);
+    if(erro.response.status === 400){
+        nome = prompt("Esse nome já está em uso, por favor digite outro.");
+        enviarNome();  
+    }  
+}
+function enviarMensagem(){
+    const texto = document.querySelector("input").value
+    document.querySelector("input").value = ""
+    const mensagem = 
+    {
+        from: nome,
+        to: "Todos",
+        text: texto,
+        type: "message"
+    }
+    const request = axios.post(`https://mock-api.driven.com.br/api/v6/uol/messages`,mensagem);
+    request.then(buscarMensagens)
+    request.catch(erro => window.location.reload());
+
+}
+setInterval(buscarMensagens,3000);
+setInterval(manterConectado,5000);
