@@ -1,10 +1,24 @@
+* {
+    box-sizing: border-box;
+}
 body {
     background-color: #F3F3F3;
     font-family: 'Roboto', sans-serif;
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-style: italic;
+    opacity: 1;
+  }
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-style: italic;;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    font-style: italic;
+}
 .geral {
-    
-
+    position: relative;
+    width: 100%;
+    margin-bottom: 100px;
 }
 .topo {
     width: 100%;
@@ -14,7 +28,6 @@ body {
     align-items: center;
     padding: 10px 22px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
     position: fixed;
     top: 0;
     right: 0;
@@ -39,9 +52,7 @@ body {
     height: 100%;
     border: none;
     color: #000000;
-    box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    font-style: italic;
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
@@ -53,4 +64,38 @@ body {
     z-index: 3;
     bottom: 21px;
     right: 18px;
+}
+.chat {
+    width: 100%;
+    margin-top: 100px;
+}
+.mensagem-box{
+    width: 100%;
+    padding: 12px 6px;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 4px;
+    word-break: break-all; 
+}
+
+.status{
+   background-color:#DCDCDC;
+}
+.message {
+    background-color: white;
+}
+.private {
+    background-color: #FFDEDE;
+}
+.horario {
+    color: #AAAAAA;
+    margin-right: 7px;
+}
+.conteudo {
+    width: 100%; 
+}
+.nome-de-usuario, .remetente {
+    font-weight: 700;
 }

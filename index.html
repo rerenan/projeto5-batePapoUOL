@@ -19,7 +19,21 @@
             <ion-icon name="people"></ion-icon>
         </div>
         <div class="chat">
- 
+            <div class="mensagem-box privada">
+                <span class="horario">(09:21:45)</span>
+                <span class="nome-de-usuario">João</span> para <span class="remetente">Maria:</span>
+                <span class="mensagem">BOMDSADNDDDDDDDDDDDDDDDDDDssssssssssssssssssssssssssssssssssssssssssDAS</span>
+            </div>
+            <div class="mensagem-box status">
+                <span class="horario">(09:21:45)</span>
+                <span class="nome-de-usuario">João</span>
+                <span class="mensagem">entrou na sala...</span>
+            </div>
+            <div class="mensagem-box publica">
+                <span class="horario">(09:21:45)</span>
+                <span class="nome-de-usuario">João</span> para <span class="remetente">Todos:</span>
+                <span class="mensagem">BOM dia</span>
+            </div>
         </div>
         <div class="input-msg">
             <input type="text" placeholder="Escreva aqui...">
@@ -28,6 +42,7 @@
     </div>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
