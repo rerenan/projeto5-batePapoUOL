@@ -5,14 +5,41 @@ let pessoaSelecionada = "";
 let visibilidadeSelecionada = "";
 let destinatario;
 let tipoMsg;
-let nome = prompt("Qual é o seu nome?");
+let nome;
+
 function enviarNome(){
+    nome = document.querySelector(".input-entrada").value
     const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',{name: nome})
-    request.then(buscarMensagens);
+    request.then(entrar);
     request.catch(tratarErro);
     buscarParticipantes();
 }
-enviarNome();
+function entrar() {
+    buscarMensagens();
+    const input = document.querySelector(".input-entrada")
+    const butao = document.querySelector("button")
+    const loading = document.querySelector(".lds-default")
+    const text = document.querySelector(".tela-inicial span")
+    input.classList.add("escondido");
+    butao.classList.add("escondido");
+    loading.classList.remove("escondido");
+    text.classList.remove("escondido");
+    setInterval(mudarTela,3000);
+    setInterval(manterConectado,5000);
+}
+function mudarTela(){
+    document.querySelector(".tela-inicial").classList.add("escondido")
+    document.querySelector(".geral").classList.remove("escondido")
+}
+function manterConectado() {
+    axios.post('https://mock-api.driven.com.br/api/v6/uol/status',{name: nome})
+}
+
+function tratarErro(erro){
+    if(erro.response.status === 400){
+        alert("Nome já em uso!!")
+    } 
+}
 function buscarParticipantes(){
     let promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
     promise.then(mostrarParticipantes);
@@ -48,39 +75,39 @@ function mostrarMensagens(resposta){
             </div>`
             }  
         }
+     
     }
 }
 function mostrarParticipantes(resposta) {
     listParticipantes = resposta.data
-    const participantesAtivos = document.querySelector(".participantes-ativos")
+    const DivparticipantesAtivos = document.querySelector(".participantes-ativos")
     for(let i = 0; i < listParticipantes.length; i++){
-        const particpante = listParticipantes[i];
-        if(listParticipantesAux.indexOf(particpante.name) == -1){
-            participantesAtivos.innerHTML += ` 
-            <div class="pessoa" onclick="selecionar(this)">
+        const participante = listParticipantes[i];
+        if(document.getElementById(`${participante.name}`) === null){
+            DivparticipantesAtivos.innerHTML += ` 
+            <div class="pessoa" name="${participante.name}" id="${participante.name}" onclick="selecionar(this)">
                 <ion-icon name="person-circle"></ion-icon>
-                <span>${particpante.name}</span>
+                <span>${participante.name}</span>
                 <img class="check" src="/projeto5-batePapoUOL/imgs/Vector.png">
             </div>`
-            listParticipantesAux.push(particpante.name);
-        }  
-    }
-}
 
-function manterConectado() {
-    axios.post('https://mock-api.driven.com.br/api/v6/uol/status',{name: nome})
-}
-function tratarErro(erro){
-    console.log(erro.response);
-    if(erro.response.status === 400){
-        nome = prompt("Esse nome já está em uso, por favor digite outro.");
-        enviarNome();  
-    }  
-}
+        } 
+    }
+    let participantesAtivos = listParticipantes.map(participante => participante.name)
+    let listPessoas = document.querySelectorAll(".pessoa")
+    for(let k = 1; k < listPessoas.length; k++){
+            
+        if(participantesAtivos.indexOf(listPessoas[k].getAttribute("id"))=== -1){
+            let elemento = listPessoas[k]
+            elemento.parentNode.removeChild(elemento);
+        }
+            
+    }        
+} 
 function enviarMensagem(){
     verificaTipoMsg();
-    const texto = document.querySelector("input").value;
-    document.querySelector("input").value = "";
+    const texto = document.querySelector(".input-enviar-msg").value;
+    document.querySelector(".input-enviar-msg").value = "";
     let mensagem = 
     {
         from: nome,
@@ -149,5 +176,4 @@ function verificaTipoMsg(){
     }
 }
 setInterval(buscarMensagens,3000);
-setInterval(manterConectado,5000);
 setInterval(buscarParticipantes,10000);

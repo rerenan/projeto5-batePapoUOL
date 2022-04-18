@@ -13,17 +13,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="geral">
+    <div class="tela-inicial ">
+        <img src="/projeto5-batePapoUOL/imgs/logo 2.png">
+        <input class="input-entrada" type="text" placeholder="Digite seu nome">
+        <button onclick="enviarNome()">Entrar</button>
+        <div class="lds-default escondido"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <span class="escondido">Entrando...</span>
+    </div>
+    <div class="geral escondido">
         <div class="topo">
             <img src="/projeto5-batePapoUOL/imgs/logo 1.png" alt="logo do bate-papo UOL">
             <ion-icon name="people" onclick="abrirMenuLateral()"></ion-icon>
         </div>
         <div class="chat"></div>
         <div class="input-msg">
-            <input type="text" placeholder="Escreva aqui...">
+            <input class="input-enviar-msg" type="text" placeholder="Escreva aqui...">
             <span></span>
             <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
         </div>
+        <div class="aux-scroll"></div>
     </div>
     <div class="tela-participantes escondido">
         <div class="fundo" onclick="abrirMenuLateral()"></div>
@@ -51,8 +59,6 @@
             </div>
         </div>
     </div>
-    
-    <div class="aux-scroll"></div>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
