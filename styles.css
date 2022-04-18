@@ -10,7 +10,7 @@ body {
     opacity: 1;
   }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    font-style: italic;;
+    font-style: italic;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
     font-style: italic;
@@ -46,6 +46,16 @@ body {
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 2;
+}
+.input-msg span{
+    position: absolute;
+    bottom: 5px;
+    left:15px;
+    z-index: 5;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 25px;
 }
 .input-msg input{
     width: 100%;
@@ -57,6 +67,7 @@ body {
     font-size: 18px;
     line-height: 21px;
     padding-left: 15px;
+    padding-bottom: 8px;
 }
 .input-msg ion-icon{
     position: absolute;
@@ -86,7 +97,7 @@ body {
 .message {
     background-color: white;
 }
-.private {
+.private_message {
     background-color: #FFDEDE;
 }
 .horario {
@@ -98,4 +109,65 @@ body {
 }
 .nome-de-usuario, .remetente {
     font-weight: 700;
+}
+.fundo {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: #000000;
+    z-index: 3;
+    opacity: 0.4;
+}
+.menu-lateral {
+    width: 259px;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 4;
+    padding: 10px 28px;
+    overflow-y: scroll;
+}
+.menu-lateral > span {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    
+}
+.pessoa ,.opcao {
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
+}
+.menu-lateral ion-icon{
+    font-size: 25px;
+    margin-right: 8px;
+
+}
+.pessoa,.opcao span{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+.escondido {
+    display: none;
+    opacity: 0;
+   
+}
+.menu-lateral img{
+    position: absolute;
+    right: 25px;
+    opacity: 0;
+}
+.selecionado img {
+    opacity: 1;
 }

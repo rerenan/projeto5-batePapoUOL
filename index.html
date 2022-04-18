@@ -16,31 +16,42 @@
     <div class="geral">
         <div class="topo">
             <img src="/projeto5-batePapoUOL/imgs/logo 1.png" alt="logo do bate-papo UOL">
-            <ion-icon name="people"></ion-icon>
+            <ion-icon name="people" onclick="abrirMenuLateral()"></ion-icon>
         </div>
-        <div class="chat">
-            <div class="mensagem-box privada">
-                <span class="horario">(09:21:45)</span>
-                <span class="nome-de-usuario">João</span> para <span class="remetente">Maria:</span>
-                <span class="mensagem">BOMDSADNDDDDDDDDDDDDDDDDDDssssssssssssssssssssssssssssssssssssssssssDAS</span>
-            </div>
-            <div class="mensagem-box status">
-                <span class="horario">(09:21:45)</span>
-                <span class="nome-de-usuario">João</span>
-                <span class="mensagem">entrou na sala...</span>
-            </div>
-            <div class="mensagem-box publica">
-                <span class="horario">(09:21:45)</span>
-                <span class="nome-de-usuario">João</span> para <span class="remetente">Todos:</span>
-                <span class="mensagem">BOM dia</span>
-            </div>
-        </div>
+        <div class="chat"></div>
         <div class="input-msg">
             <input type="text" placeholder="Escreva aqui...">
+            <span></span>
             <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
         </div>
-        
     </div>
+    <div class="tela-participantes escondido">
+        <div class="fundo" onclick="abrirMenuLateral()"></div>
+        <div class="menu-lateral">
+            <span>Escolha um contato para enviar mensagem:</span>
+            <div class="participantes-ativos">
+                <div class="pessoa" onclick="selecionar(this)">
+                    <ion-icon name="people"></ion-icon>
+                    <span>Todos</span>
+                    <img src="/projeto5-batePapoUOL/imgs/Vector.png">
+                </div>
+            </div>
+            <span>Escolha a visibilidade:</span>
+            <div class="visibildades">
+                <div class="opcao publica" onclick="selecionar(this)">
+                    <ion-icon name="lock-open"></ion-icon>
+                    <span>Público</span>
+                    <img src="/projeto5-batePapoUOL/imgs/Vector.png">
+                </div>
+                <div class="opcao reservada" onclick="selecionar(this)">
+                    <ion-icon name="lock-closed"></ion-icon>
+                    <span>Reservadamente</span>
+                    <img src="/projeto5-batePapoUOL/imgs/Vector.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="aux-scroll"></div>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
