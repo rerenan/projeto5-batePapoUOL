@@ -85,7 +85,7 @@ function mostrarParticipantes(resposta) {
         const participante = listParticipantes[i];
         if(document.getElementById(`${participante.name}`) === null){
             DivparticipantesAtivos.innerHTML += ` 
-            <div class="pessoa" name="${participante.name}" id="${participante.name}" onclick="selecionar(this)">
+            <div class="pessoa" id="${participante.name}" onclick="selecionar(this)">
                 <ion-icon name="person-circle"></ion-icon>
                 <span>${participante.name}</span>
                 <img class="check" src="/projeto5-batePapoUOL/imgs/Vector.png">
